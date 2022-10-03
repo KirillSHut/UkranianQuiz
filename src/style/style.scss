@@ -1,0 +1,765 @@
+@import url('./nullstyle.scss');
+@import url('http://fonts.cdnfonts.com/css/proxima-nova-2');
+
+$color-for-btn: #663BC1;
+
+
+body{
+    min-width: 100%;
+    min-height: 100%;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    font-family: 'Proxima Nova', sans-serif;
+}
+
+
+// Wrapper
+.wrapper{
+    position: absolute;
+    min-width: 100%;
+    min-height: 100%;
+    display: flex;
+}
+// Wrapper
+
+// Utils
+
+.btn{
+    color: #fff;
+
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    text-transform: uppercase;
+
+    padding: 25px 60px;
+    border-radius: 14px;
+    background-color: $color-for-btn;
+}
+
+.clear-btn{
+    color: $color-for-btn;
+
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    text-transform: uppercase;
+
+    padding: 20px 60px;
+    border-radius: 14px;
+    background-color: rgba(0, 0, 0, 0);
+    border: 3px solid $color-for-btn;
+}
+
+.title{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+
+    text-transform: uppercase;
+
+    color: #000000;
+}
+// Utils
+
+// Footer
+.footer{
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+}
+// Footer
+
+// Bar
+.bar{
+    width: 100%;
+    min-height: 100%;
+
+    padding: 65px 0px 83px 0px;
+
+    flex: 0 0 22%;
+    position: relative;
+    &__back{
+        width: 100%;
+        height: 100%;
+        
+        position: absolute;
+        top: 0;
+        left: 0;
+        
+        background: radial-gradient(164.17% 170.03% at 11.73% 4.33%, rgba(56, 13, 112, 0.68) 0%, rgba(56, 13, 112, 0) 100%);
+        opacity: 0.8;
+        filter: blur(1.5px);
+    }
+    &__body{
+        min-height: 100%;
+
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    &__username{
+        flex: 1 1 auto;
+    }
+
+    &__title{
+        text-align: center;
+    }
+}
+
+// Bar
+
+// Main
+
+.main{
+    flex: 0 0 78%;
+    padding-left: 100px;
+    padding-top: 40px;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: #fff;
+    &__tab{
+        flex: 1 1 auto;
+    }
+
+    &__title{
+        font-size: 55px;
+    }
+
+    &__tab{
+        margin-top: 100px;
+    }
+}
+
+
+
+// Start
+
+.start{
+    font-family: 'Proxima Nova', sans-serif;
+    &__info{
+        display: flex;
+        margin-bottom: 150px;
+        &-amount{
+            margin-right: 80px;
+        }
+        &-title{
+            font-size: 27px;
+        }
+        &-subtitle{
+            font-style: normal;
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 115%;
+
+            text-transform: uppercase;
+
+            color: #380D70;
+            margin-top: 10px;
+
+            display: flex;
+            align-items: center;
+            &-amount::before{
+                content: url('../../src/img/questions.png');
+            }
+            &-duration::before{
+                content: url('../../src/img/time.png');
+            }
+        }
+    }
+
+    &__subtitle{
+        margin-bottom: 100px;
+        &-title{
+            font-size: 27px;    
+        }
+        &-subtitle{
+            max-width: 1000px;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 19px;
+            line-height: 28px;
+
+            text-transform: uppercase;
+
+            color: #380D70;
+        }
+    }
+    &__btn{
+        padding: 20px 40px;
+    }
+}
+
+// Start
+
+// Quiz
+.quiz{
+    display: flex;
+    &-question{
+        flex: 0 0 50%;
+        &-name{
+            font-size: 30px;
+            margin-bottom: 30px;
+        }
+    }
+    &-question__form{
+        &-input{
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+            label{
+                margin-left: 5px;
+                font-style: normal;
+                font-weight: 600;
+                font-size: 20px;
+                text-transform: uppercase;
+
+                color: #000000;
+
+            }
+            input[type='radio']{
+                width: 20px;
+                height: 20px;
+            }
+        }
+    }
+    &-timer{
+        
+        flex: 0 0 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        &-title{
+            font-size: 30px;
+        }
+        &-counter{
+            font-style: normal;
+            font-weight: 900;
+            font-size: 50px;
+            text-transform: uppercase;
+
+            color: #380D70;
+
+            margin-top: 40px;
+            position: relative;
+            &::after{
+                content: "";
+                position: absolute;
+                width: 140%;
+                height: 3px;
+                background-color: #380D70;
+
+                bottom: 0;
+                right: -20%;
+            }
+        }
+
+    }
+}
+
+// Quiz
+
+// Overdue
+
+.overdue{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &__title{
+        font-size: 50px;
+        color: #380D70;
+        margin: 100px 0px 100px 0px;
+    }
+}
+
+// Overdue
+
+// Result
+
+.result{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10%;
+    &__body{
+        display: flex;
+        margin-bottom: 100px;
+    }
+    &__item{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    &__item:first-child{
+        margin-right: 100px;
+    }
+    &__score-title{
+            font-style: normal;
+            font-weight: 600;
+            font-size: 35px;
+            text-transform: uppercase;
+            color: #000000;
+
+            margin-bottom: 20px;
+    }
+    &__score-table{
+            font-style: normal;
+            font-weight: 700;
+            font-size: 47.988px;
+            text-transform: uppercase;
+            color: #380D70;
+    }
+}
+
+// Result
+
+// Registration
+
+.registration{
+    min-width: 100%;
+    min-height: 100%;
+    position: relative;
+    &-bg{
+        width: 100%;
+        height: 100%;
+
+        position: absolute;
+        z-index: 1;
+        background: radial-gradient(164.17% 170.03% at 11.73% 4.33%, rgba(56, 13, 112, 0.68) 0%, rgba(56, 13, 112, 0) 100%);
+        opacity: 0.8;
+        filter: blur(1.5px);
+    }
+    &__body{
+        position: relative;
+        z-index: 3;
+
+        display: flex;
+        flex-direction: column;
+        width: 500px;
+        margin: 0 auto;
+        padding: 130px 0px 0px 0px;
+    }
+    &__title{
+        font-style: normal;
+        font-weight: 700;
+        font-size: 50px;
+
+        margin-bottom: 70px;
+        text-align: center;
+        text-transform: uppercase;
+
+        color: #380D70;
+    }
+    &-copyright{
+        position: absolute;
+        left: 10px;
+        bottom: 10px;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 23.994px;
+        line-height: 28px;
+        color: #9F9F9F;
+        z-index: 2;
+    }
+    &__form{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    &__input{
+        padding-left: 10px;
+        width: 100%;
+        height: 70px;
+        font-size: 30px;
+        margin-bottom: 50px;
+        border: 1px solid #9978C5;
+        border-radius: 16px;
+        background-color: #E6D9F8;
+    }
+    &-btn{
+        width: 300px;
+        text-align: center;
+        padding: 27px 0px;
+
+        background: $color-for-btn;
+        border: 3px solid $color-for-btn;
+
+        color: #fff;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 23px;
+        text-transform: uppercase;
+
+        width: 300px;
+        text-align: center;
+        padding: 27px 0px;
+        border-radius: 14px;
+        margin-top: 20px;
+    }
+    &-btn-cancel{
+        background: rgba(0, 0, 0, 0);
+        border: 3px solid $color-for-btn;
+
+        color: $color-for-btn;
+
+        font-style: normal;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 23px;
+        text-transform: uppercase;
+
+        width: 300px;
+        text-align: center;
+        padding: 27px 0px;
+        border-radius: 14px;
+        margin-top: 20px;
+    }
+    &__singin-link{
+        display: flex;
+        justify-content: center;
+        margin-top: 100px;
+        p{
+            font-style: normal;
+            font-weight: 600;
+            font-size: 15px;
+
+            text-transform: uppercase;
+
+            color: #4F4F4F;
+        }
+    }
+}
+// Registration
+
+// CircleBtn
+
+.circle-button{
+    display: none;
+}
+
+// Media
+
+@media(max-height: 850px){
+    .main__title{
+        font-size: 40px;
+    }
+    .start__info-title{
+        font-size: 20px;
+    }
+    .start__info-subtitle{
+        font-size: 15px;
+    }
+    .start__info{
+        margin-bottom: 40px;
+    }
+}
+
+@media(max-width: 1599px){
+    .btn{
+        padding: 20px 40px;
+        font-size: 20px;
+    }
+    .start__subtitle-subtitle{
+        font-size: 13px;
+        line-height: 25px;
+    }
+    .bar__image{
+        width: 156px;
+            height: 180px;
+        img{
+            width: 156px;
+            height: 180px;
+        }
+    }
+
+    // Registration
+    .registration{
+        &__body{
+            max-width: 400px;
+        }
+        &__title{
+            font-size: 40px;
+            margin-bottom: 40px;
+        }
+        &__input{
+            width: 100%;
+            height: 60px; 
+            margin-bottom: 40px;  
+        }
+        &-btn{
+            font-size: 15px;
+            padding: 20px 30px 20px 30px;
+        }
+    }
+}
+
+@media(max-width: 1450px){
+    .bar{
+        display: none;
+    }
+    .main{
+        padding: 50px 50px 0px 50px;
+
+        flex: 1 1 78%;
+        &__tab{
+            margin-top: 60px;
+        }
+        &__title{
+            margin: 0 auto;
+        }
+    }
+    .circle-button{
+        display: block;
+        position: absolute;
+        bottom: 30px;
+        right: 20px;
+        a{
+            font-size: 15px;
+            padding: 15px 25px;
+        }
+    }  
+    .registration{
+        &__singin-link{
+            margin-top: 50px;
+        }
+    }  
+}
+
+@media(max-width: 1150px){
+    .wrapper{
+        flex-direction: column;
+    }
+    .main{
+        flex: 1 1 78%;
+        padding: 0;
+    }
+
+    .start{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        &__info{
+            justify-content: center;
+        }
+        &__subtitle{
+            text-align: center;
+        }
+        &__subtitle-subtitle{
+            padding: 20px 40px 0px 40px;
+            margin: 0 auto;
+        }
+        &__button{
+            margin: 0 auto;
+        }
+    }
+
+    .quiz{
+        padding: 0px 20px 0px 20px;
+    }
+
+    .overdue{
+        &__title{
+            font-size: 30px;
+        }
+    }
+}
+
+@media(max-width: 900px){
+    .quiz{
+        padding: 0px 40px 0px 40px;
+        flex-direction: column;
+        &-question{
+            &-name{
+                font-size: 25px;
+            }
+        }
+        &-timer{
+            order: -1;
+            margin-bottom: 40px;
+            &-title{
+                font-size: 25px;
+            }
+            &-counter{
+                font-size: 30px;
+                text-transform: uppercase;
+    
+                color: #380D70;
+    
+                margin-top: 40px;
+                position: relative;
+                &::after{
+                    content: "";
+                    position: absolute;
+                    width: 140%;
+                    height: 3px;
+                    background-color: #380D70;
+    
+                    bottom: 0;
+                    right: -20%;
+                }
+            }
+        }
+        &-question__form{
+            &-input{
+                display: flex;
+                align-items: center;
+                margin-bottom: 40px;
+                label{
+                    font-size: 20px; 
+                }
+                input[type='radio']{
+                    width: 10px;
+                    height: 10px;
+                }
+            }
+        }
+    }
+    .result{
+        &__score-title,
+        &__score-table{
+            font-size: 25px;
+        }
+    }
+}
+
+@media(max-width: 600px){
+    .main{
+        flex: 1 1 auto;
+        margin-bottom: 100px;
+        &__title{
+            font-size: 30px;
+        }
+    }
+    .start{
+        &__info{
+            padding: 0px 20px 0px 20px;
+            &-title{
+                font-size: 15px;
+            }
+        }
+    }
+    .registration{
+        &__body{
+            max-width: 300px;
+        }
+        &__title{
+            font-size: 40px;
+            margin-bottom: 40px;
+        }
+        &__input{
+            width: 100%;
+            height: 40px; 
+            margin-bottom: 40px;  
+            font-size: 20px;
+        }
+        &-btn{
+            font-size: 15px;
+            padding: 10px 20px 10px 20px;
+        }
+    }
+    .overdue{
+        &__title{
+            font-size: 20px;
+            margin-bottom: 40px;
+        }
+        &-btn{
+            padding: 20px 30px 20px 30px;
+            font-size: 20px;
+        }
+    }
+    .result{
+        &__body{
+            flex-direction: column;
+            margin-bottom: 30px;
+        }
+        &__item:first-child{
+            margin-right: 0;
+        }
+        &__item{
+            margin-bottom: 20px;
+        }
+        &__score-title,
+        &__score-table{
+            font-size: 25px;
+        }
+    }
+    .circle-button{
+        min-width: 100%;
+
+        display: flex;
+        justify-content: center;
+        
+        right: 0;
+        position: relative;
+    }
+    .footer{
+
+        position: relative;
+    }
+}
+
+
+@media(max-width: 470px){
+    .main{
+        &__title{
+            font-size: 20px;
+        }
+    }
+    .start{
+        &__info{
+            padding: 0px 20px 0px 20px;
+            &-title{
+                font-size: 10px;
+            }
+        }
+        &__subtitle-subtitle{
+            font-size: 10px;
+        }
+    }
+}
+@media(max-width: 350px){
+    .main{
+        margin-bottom: 100px;
+    }
+}
+@media(max-height: 699px){
+    .registration{
+        &__body{
+            padding-top: 20px;
+        }
+    }
+}
+@media(max-height: 600px){
+    .circle-button{
+        min-width: 100%;
+        display: flex;
+        justify-content: center;
+        min-width: 100%;
+        display: flex;
+        justify-content: center;
+        
+        right: 0;
+        position: relative;
+    }
+    .footer{
+        
+        position: relative;
+    }
+}
+
+// Hide
+
+.hide{
+    display: none;
+}
+

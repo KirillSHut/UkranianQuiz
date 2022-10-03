@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+</head>
+
+<body>
+    <div class="wrapper">
+
+
+
+
+
+        <section class="bar">
+            <div class="bar__back"></div>
+            <div class="bar__body">
+                <div class="bar__image">
+                    <img src="../src/img/UserPhoto.png" alt="User Photo">
+                </div>
+                <div class="bar__username">
+                    <p class="bar__title title">Ви ще не увійшли<br> в аккаунт</p>
+                </div>
+                <div class="bar__btn">
+                    <a href="#" class="btn" id="signBtn">Увійти в аккаунт</a>
+                </div>
+            </div>
+        </section>
+
+
+        <main class="main">
+            <h1 class="main__title title">Вікторина з історії україни</h1>
+
+
+            <div class="start main__tab">
+                <div class="start__info">
+                    <div class="start__info-amount">
+                        <p class="start__info-title title">кількість питань:</p>
+                        <p class="start__info-subtitle start__info-subtitle-amount" id="amountOfquestions"></p>
+                    </div>
+                    <div class="start__info-duration">
+                        <p class="start__info-title title">час на проходження:</p>
+                        <p class="start__info-subtitle start__info-subtitle-duration" id="timeOfQuiz"></p>
+                    </div>
+                </div>
+                <div class="start__subtitle">
+                    <p class="start__subtitle-title title">Тема вікторини:</p>
+                    <p class="start__subtitle-subtitle">
+                        Національно визвольна війна періоду 1648—1657 років. Повстання
+                        під проводом Богдана Хмельницького, під
+                        час яких Річ Посполита втратила контроль над центральною частиною українських етнічних земель,
+                        на базі яких постала козацька держава на чолі з гетьманом. Цей період розглядається як перша
+                        фаза Української національної революції XVII століття.
+                    </p>
+                </div>
+                <div class="start__button">
+                    <button href="#" class="btn start__btn" id="startBtn" disabled="true">Почати вікторину</button>
+                </div>
+            </div>
+
+            <div class="quiz main__tab hide">
+                <div class="quiz-question">
+                    <p class="quiz-question-name title" id="questionName">1.Чому українці обрали не чорновіла?</p>
+                    <form action="#" class="quiz-question__form">
+                        <div class="quiz-question__form-input">
+                            <input type="radio" name="options" id="option1" value="0">
+                            <label for="option1">От так</label>
+                        </div>
+                        <div class="quiz-question__form-input">
+                            <input type="radio" name="options" id="option2" value="1">
+                            <label for="option2">Не знаю</label>
+                        </div>
+                        <div class="quiz-question__form-input">
+                            <input type="radio" name="options" id="option3" value="2">
+                            <label for="option3">чогось</label>
+                        </div>
+                        <div class="quiz-question__form-input">
+                            <input type="radio" name="options" id="option4" value="3">
+                            <label for="option4">інша відповідь</label>
+                        </div>
+                        <div class="quiz-question__form-button">
+                            <button type="submit" class="quiz-question__form-btn clear-btn">Відповісти</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="quiz-timer">
+                    <p class="quiz-timer-title title">Часу залишилось:</p>
+                    <p class="quiz-timer-counter" id="timeCounter">3:45</p>
+                    <div class="quiz-timer-line"></div>
+                </div>
+            </div>
+
+            <div class="overdue main__tab hide">
+                <p class="overdue__title title">Ви не встигли - спробуйте ще </p>
+                <button class="overdue-btn clear-btn">Заново</button>
+            </div>
+
+            <div class="result main__tab hide">
+                <div class="result__body">
+                    <div class="result__item">
+                        <p class="result__score-title">Ваш результат:</p>
+                        <p class="result__score-table" id="rightAnswers">32 / 54</p>
+                    </div>
+                    <div class="result__item">
+                        <p class="result__score-title">Час проходження:</p>
+                        <p class="result__score-table" id="resultTime">15:44</p>
+                    </div>
+                </div>
+                <button class="result-btn clear-btn">Заново</button>
+            </div>
+
+        </main>
+
+
+        <div class="circle-button">
+            <a href="#" class="btn circle-btn" id="signBtn">Увійти</a>
+        </div>
+
+        <footer class="footer">
+            <p class="copyright">©All rights reserved</p>
+        </footer>
+    </div>
+
+
+    <div class="registration hide">
+        <div class="registration-bg" id="registration-bg"></div>
+        <div class="registration__body registration__body_1">
+            <h1 class="registration__title">реєстрація</h1>
+            <form class="registration__form">
+                <input type="username" class="registration__input" placeholder="E-mail">
+                <input type="password" class="registration__input" placeholder="Password">
+                <button class="registration-btn" type="submit">зареєструватися</button>
+                <button class="registration-btn registration-btn-cancel" id="cancelBtn">пізніше</button>
+            </form>
+            <div class="registration__singin-link">
+                <p>Вже маєте акаунт? <a href="#" id="signInBtn">Увійти</a></p>
+            </div>
+        </div>
+        <div class="registration__body registration__body_2 hide">
+            <h1 class="registration__title">Увійти</h1>
+            <form class="registration__form">
+                <input type="username" class="registration__input" placeholder="E-mail">
+                <input type="password" class="registration__input" placeholder="Password">
+                <button class="registration-btn" type="submit">Увійти</button>
+                <button class="registration-btn registration-btn-cancel" id="cancelBtn">пізніше</button>
+            </form>
+            <div class="registration__singin-link">
+                <p>Не маєте акаунт? <a href="#" id="signBtn">Зареєструватися</a></p>
+            </div>
+        </div>
+        <div class="registration-copyright">©All rights reserved</div>
+    </div>
+
+
+</body>
+
+</html>
