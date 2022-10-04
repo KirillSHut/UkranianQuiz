@@ -1,4 +1,4 @@
-import { showValidTime, openTabs } from "./utils";
+import { showValidTime, openTabs, makeDisabledBtn } from "./utils";
 
 
 export class Question {
@@ -18,6 +18,7 @@ export class Question {
     static setTime(questions) {
         const time = questions.length * 30;
         localStorage.setItem('Time', time);
+        document.querySelector('#timeCounter').textContent = time;
     }
 
     static fillQuestionField(questions) {
@@ -26,6 +27,21 @@ export class Question {
             counter = localStorage.getItem('QuestionCounter');
         title.textContent = (+counter + 1) + ". " + questions[counter].title;
         options.forEach((item, id) => item.textContent = questions[counter].answers[id][0]);
+        makeDisabledBtn('#submit', true, 'rgba(206, 180, 184, 1)');
+    }
+
+    static runTimer(questions) {
+        const interval = setInterval(() => {
+            if (localStorage.getItem('QuestionCounter') >= questions.length) {
+                clearInterval(interval);
+            } else if (localStorage.getItem('Time') <= 0) {
+                openTabs(false, '.quiz', '.overdue')
+            }
+            else {
+                showValidTime('#timeCounter')
+                localStorage.setItem('Time', (+localStorage.getItem('Time') - 1))
+            }
+        }, 1000)
     }
 
     static nextQuestion(questions) {
@@ -39,6 +55,7 @@ export class Question {
             obj[i] = item;
         });
 
+
         questions[counter].answers[obj.options].push('Choosen');
 
         ++counter;
@@ -49,9 +66,53 @@ export class Question {
         form.reset();
 
         if (localStorage.getItem('QuestionCounter') >= questions.length) {
+            Question.fillTheResultField();
             openTabs(false, '.quiz', '.result')
         } else {
             Question.fillQuestionField(questions);
         }
+
+    }
+
+    static fillTheResultField() {
+        const result = JSON.parse(localStorage.getItem('UserResult')),
+            resultAnswerTable = document.querySelector('#rightAnswers');
+        let right = 0,
+            time = (result.length * 30) - localStorage.getItem('Time');
+        showValidTime('#resultTime', true, time);
+
+        result.forEach((item => {
+            item.answers.forEach((elem) => {
+                if (elem.includes('Choosen')) {
+                    console.log(11);
+                    if (elem.includes(true)) {
+                        ++right;
+                    }
+                }
+            })
+        }))
+        resultAnswerTable.textContent = right + ' / ' + result.length;
+
+
+    }
+
+    static async fillPriveousResult() {
+        try {
+            if (typeof (JSON.parse(localStorage.getItem('UserResult'))) === 'object') {
+                const questionList = JSON.parse(localStorage.getItem('UserResult'));
+                const counter = localStorage.getItem('QuestionCounter');
+                console.log(counter);
+                if (questionList.length !== counter) {
+                    console.log(1);
+                } else if (counter === 0 || questionList.length !== counter) {
+                    openTabs(false, '.start', '.result')
+                    Question.fillTheResultField()
+                }
+            }
+        }
+        catch (e) {
+            console.log(e);
+        }
+        return false
     }
 }

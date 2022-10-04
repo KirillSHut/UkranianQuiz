@@ -1,17 +1,21 @@
 import { openTabs } from './utils';
+import { Question } from './question';
 
 export function buttonWork() {
 
 
-    const startBtn = document.querySelector('#startBtn'),
-        signBtns = document.querySelectorAll('#signBtn'),
+    const signBtns = document.querySelectorAll('#signBtn'),
         registrationTab = document.querySelector('.registration'),
-        signInBtn = registrationTab.querySelector('#signInBtn');
+        signInBtn = registrationTab.querySelector('#signInBtn'),
+        againBtns = document.querySelectorAll('#again');
 
 
-
-    startBtn.addEventListener('click', (e) => openTabs(e, '.start', '.quiz'));
-
+    againBtns.forEach((item) => {
+        item.addEventListener('click', () => {
+            localStorage.setItem('UserResult', '')
+            location.reload()
+        })
+    })
 
     signBtns.forEach((elem) => elem.addEventListener('click', (e) => {
         openTabs(e, '.wrapper', '.registration');

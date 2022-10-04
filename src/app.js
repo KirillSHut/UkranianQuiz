@@ -34,10 +34,23 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+
     fillTabs
-        .then(() => { // Заполнение стартового окна и вопроса
+        .then(() => { // Заполнение стартового окна и вопроса, назначение события на кнопку старта
+
             Question.fillStartField(questionList);
+
             Question.fillQuestionField(questionList);
+
+            document.querySelector('#startBtn').addEventListener('click', (e) => {
+                Question.runTimer(questionList);
+                openTabs(e, '.start', '.quiz')
+            });
+            document.querySelectorAll('.quiz-question__form-input input').forEach((item) => {
+                item.addEventListener('change', () => {
+                    makeDisabledBtn('#submit', false);
+                })
+            })
             makeDisabledBtn('#startBtn', false)
         })
         .then(() => { // Назначение оброботчика событий на кнопку submit в викторине
@@ -49,5 +62,4 @@ window.addEventListener('DOMContentLoaded', () => {
         .catch(() => {
             alert("Something went wrong");
         })
-
 })
