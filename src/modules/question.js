@@ -1,3 +1,4 @@
+import { push } from "firebase/database";
 import { showValidTime, openTabs, makeDisabledBtn } from "./utils";
 
 
@@ -8,17 +9,21 @@ export class Question {
 
         const amount = document.querySelector('#amountOfquestions'),
             time = document.querySelector('#timeOfQuiz');
-
         questions.length >= 5 ? amount.textContent = questions.length + " питань" : amount.textContent = questions.length + " питання";
         Question.setTime(questions);
         showValidTime('#timeOfQuiz', true);
-        localStorage.setItem('QuestionCounter', 0);
     }
 
     static setTime(questions) {
-        const time = questions.length * 30;
-        localStorage.setItem('Time', time);
-        document.querySelector('#timeCounter').textContent = time;
+        try {
+            if (localStorage.getItem('Time')) { }
+        }
+        catch (e) {
+            const time = questions.length * 30;
+            localStorage.setItem('Time', time);
+            document.querySelector('#timeCounter').textContent = time;
+        }
+
     }
 
     static fillQuestionField(questions) {
@@ -84,7 +89,6 @@ export class Question {
         result.forEach((item => {
             item.answers.forEach((elem) => {
                 if (elem.includes('Choosen')) {
-                    console.log(11);
                     if (elem.includes(true)) {
                         ++right;
                     }
@@ -98,21 +102,19 @@ export class Question {
 
     static async fillPriveousResult() {
         try {
-            if (typeof (JSON.parse(localStorage.getItem('UserResult'))) === 'object') {
-                const questionList = JSON.parse(localStorage.getItem('UserResult'));
-                const counter = localStorage.getItem('QuestionCounter');
-                console.log(counter);
-                if (questionList.length !== counter) {
-                    console.log(1);
-                } else if (counter === 0 || questionList.length !== counter) {
+            const userResult = JSON.parse(localStorage.getItem('UserResult'));
+            if (userResult) {
+                let counter = [];
+                userResult.forEach((item, id) => {
+                    item.answers.forEach((elem, i) => elem.includes('Choosen') ? counter.push(id) : false)
+                })
+                if ((+counter[counter.length - 1] + 1) === userResult.length) {
+                    Question.fillTheResultField();
                     openTabs(false, '.start', '.result')
-                    Question.fillTheResultField()
-                }
+                } else { }
             }
         }
         catch (e) {
-            console.log(e);
         }
-        return false
     }
 }

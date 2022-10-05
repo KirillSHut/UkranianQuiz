@@ -26,6 +26,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     let questionList;   //Список вопросов
 
+
     const fillTabs = new Promise((resolve, reject) => { // Запрос на вопросы
         makeDisabledBtn('#startBtn', true)
         onValue(questionRef, (question) => {
@@ -36,12 +37,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
     fillTabs
-        .then(() => { // Заполнение стартового окна и вопроса, назначение события на кнопку старта
-
-            Question.fillStartField(questionList);
-
-            Question.fillQuestionField(questionList);
-
+        .then(() => { // назначение события на кнопку старта
             document.querySelector('#startBtn').addEventListener('click', (e) => {
                 Question.runTimer(questionList);
                 openTabs(e, '.start', '.quiz')
@@ -51,6 +47,16 @@ window.addEventListener('DOMContentLoaded', () => {
                     makeDisabledBtn('#submit', false);
                 })
             })
+        })
+        .then((resolve, reject) => {
+            Question.fillPriveousResult();
+            Question.fillStartField(questionList);
+
+        })
+        .then(() => { // Заполнение стартового окна и вопроса
+
+            Question.fillQuestionField(questionList);
+
             makeDisabledBtn('#startBtn', false)
         })
         .then(() => { // Назначение оброботчика событий на кнопку submit в викторине

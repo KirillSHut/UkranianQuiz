@@ -9,7 +9,7 @@ export function openTabs(e, close, show) {
 export function showValidTime(selector, isStat, time) {
     time = time || localStorage.getItem('Time')
     const tab = document.querySelector(selector);
-    if (time >= 60) {
+    if (time > 60) {
         const minutes = Math.floor(time / 60),
             seconds = time % 60;
         if (isStat) {
