@@ -49,7 +49,7 @@ window.addEventListener('DOMContentLoaded', () => {
             })
         })
         .then((resolve, reject) => {
-            Question.fillPriveousResult();
+            Question.fillPriveousResult(questionList);
             Question.fillStartField(questionList);
 
         })

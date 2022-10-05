@@ -12,6 +12,8 @@ export function buttonWork() {
 
     againBtns.forEach((item) => {
         item.addEventListener('click', () => {
+            localStorage.removeItem('Time')
+            localStorage.removeItem('QuestionCounter')
             localStorage.setItem('UserResult', '')
             location.reload()
         })

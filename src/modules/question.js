@@ -12,27 +12,35 @@ export class Question {
         questions.length >= 5 ? amount.textContent = questions.length + " питань" : amount.textContent = questions.length + " питання";
         Question.setTime(questions);
         showValidTime('#timeOfQuiz', true);
+        if (localStorage.getItem('QuestionCounter')) {
+            console.log(localStorage.getItem('QuestionCounter'));
+            return
+        } else if (localStorage.getItem('QuestionCounter') == null) {
+            localStorage.setItem('QuestionCounter', 0);
+        }
     }
 
     static setTime(questions) {
-        try {
-            if (localStorage.getItem('Time')) { }
-        }
-        catch (e) {
+        if (localStorage.getItem('Time')) {
+            return
+        } else if (localStorage.getItem('Time') == null) {
             const time = questions.length * 30;
             localStorage.setItem('Time', time);
             document.querySelector('#timeCounter').textContent = time;
         }
-
     }
 
     static fillQuestionField(questions) {
         const title = document.querySelector('#questionName'),
             options = document.querySelectorAll('.quiz-question__form-input label'),
             counter = localStorage.getItem('QuestionCounter');
-        title.textContent = (+counter + 1) + ". " + questions[counter].title;
-        options.forEach((item, id) => item.textContent = questions[counter].answers[id][0]);
-        makeDisabledBtn('#submit', true, 'rgba(206, 180, 184, 1)');
+        if (counter >= questions.length) {
+            return
+        } else {
+            title.textContent = (+counter + 1) + ". " + questions[counter].title;
+            options.forEach((item, id) => item.textContent = questions[counter].answers[id][0]);
+            makeDisabledBtn('#submit', true, 'rgba(206, 180, 184, 1)');
+        }
     }
 
     static runTimer(questions) {
@@ -100,9 +108,11 @@ export class Question {
 
     }
 
-    static async fillPriveousResult() {
+    static async fillPriveousResult(questions) {
         try {
-            const userResult = JSON.parse(localStorage.getItem('UserResult'));
+            const userResult = localStorage.getItem('UserResult') ? JSON.parse(localStorage.getItem('UserResult')) : false;
+
+            const time = localStorage.getItem('Time') != null ? localStorage.getItem('Time') : questions.length * 30 + 1;
             if (userResult) {
                 let counter = [];
                 userResult.forEach((item, id) => {
@@ -111,7 +121,13 @@ export class Question {
                 if ((+counter[counter.length - 1] + 1) === userResult.length) {
                     Question.fillTheResultField();
                     openTabs(false, '.start', '.result')
-                } else { }
+                } else {
+                    Question.runTimer(userResult);
+                    openTabs(false, '.start', '.quiz')
+                }
+            } else if (time < (questions.length * 30)) {
+                Question.runTimer(userResult);
+                openTabs(false, '.start', '.quiz')
             }
         }
         catch (e) {
