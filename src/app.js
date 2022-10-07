@@ -1,9 +1,9 @@
 import './style/style.scss';
 import { openTabs, makeDisabledBtn } from './modules/utils';
 import { buttonWork } from './modules/btns';
-import { Question } from './modules/question';
+import { Question } from './modules/Question';
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, onValue } from "firebase/database";
+import { getDatabase, ref, onValue, set } from "firebase/database";
 
 
 const firebaseConfig = {
@@ -27,6 +27,30 @@ window.addEventListener('DOMContentLoaded', () => {
     let questionList;   //Список вопросов
 
 
+    // Если в аккаунт вошли
+    if (localStorage.getItem('UserEmail') != null) {
+        const resultRef = ref(db, `users/${localStorage.getItem('UserUid')}`);
+        const btns = document.querySelectorAll('#signBtn');
+        document.querySelector('.bar__title').textContent = localStorage.getItem('UserEmail');
+        btns.forEach((elem) => {
+            elem.textContent = 'Вийти з аккаунту';
+        })
+        onValue(resultRef, (question) => {
+            const data = JSON.parse(JSON.stringify(question.val()));
+            const answer = data.userResult,
+                time = data.time;
+            console.log(answer);
+            if (answer === 'empty') {
+                console.log('Тест ще не пройден');
+            } else {
+                localStorage.setItem('UserResult', answer);
+                localStorage.setItem('Time', time);
+            }
+        });
+    }
+    // Если в аккаунт вошли
+
+
     const fillTabs = new Promise((resolve, reject) => { // Запрос на вопросы
         makeDisabledBtn('#startBtn', true)
         onValue(questionRef, (question) => {
@@ -48,10 +72,9 @@ window.addEventListener('DOMContentLoaded', () => {
                 })
             })
         })
-        .then((resolve, reject) => {
+        .then(() => {
             Question.fillPriveousResult(questionList);
             Question.fillStartField(questionList);
-
         })
         .then(() => { // Заполнение стартового окна и вопроса
 
@@ -66,6 +89,6 @@ window.addEventListener('DOMContentLoaded', () => {
             })
         })
         .catch(() => {
-            alert("Something went wrong");
+            openTabs(false, '.start', '.error')
         })
 })

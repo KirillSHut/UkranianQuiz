@@ -1,5 +1,6 @@
 import { push } from "firebase/database";
 import { showValidTime, openTabs, makeDisabledBtn } from "./utils";
+import { User } from "./User";
 
 
 export class Question {
@@ -80,7 +81,8 @@ export class Question {
 
         if (localStorage.getItem('QuestionCounter') >= questions.length) {
             Question.fillTheResultField();
-            openTabs(false, '.quiz', '.result')
+            User.postUserResult(localStorage.getItem('UserResult'), localStorage.getItem('Time'));
+            openTabs(false, '.quiz', '.result');
         } else {
             Question.fillQuestionField(questions);
         }
