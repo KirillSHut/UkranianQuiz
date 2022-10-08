@@ -98,15 +98,26 @@ export function buttonWork() {
             if (document.querySelector('.userCluePassword') != null) {
                 return
             } else {
-                pushUserClue('Пароль може містити лише числові значення', document.querySelectorAll('.registration__input-password'), 'userCluePassword');
+                pushUserClue('Пароль може містити лише числові значення. Від 5 до 10 символів.', document.querySelectorAll('.registration__input-password'), 'userCluePassword');
             }
         })
         item.addEventListener('input', (e) => {
+            const btns = document.querySelectorAll('[data-registerBtn]');
             e.target.value = e.target.value.replace(/\D/ig, '')
-            makeSingAble()
+            if (e.target.value.length < 5) {
+                btns[1].disabled = true;
+                btns[0].disabled = true;
+            } else {
+                makeSingAble()
+            }
         })
-        item.addEventListener('change', () => {
-            document.querySelectorAll('.userCluePassword').forEach(item => item.remove())
+        item.addEventListener('change', (e) => {
+            document.querySelectorAll('.userCluePassword').forEach(item => item.remove());
+            if (e.target.value.length < 5) {
+                pushUserClue('Кількість символів повинна бути більше 5', document.querySelectorAll('.registration__input-password'), 'userCluePassword');
+            } else {
+                document.querySelectorAll('.userCluePassword').forEach(item => item.remove());
+            }
         })
     })
 
