@@ -5,7 +5,6 @@ import { Question } from './modules/Question';
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, onValue, set } from "firebase/database";
 
-
 const firebaseConfig = {
     apiKey: "AIzaSyDIW4N_7rSZHasa_dV19JZRwxTb0f3-Z_M",
     authDomain: "quiz-57070.firebaseapp.com",
@@ -18,7 +17,6 @@ const firebaseConfig = {
     app = initializeApp(firebaseConfig),
     db = getDatabase(),
     questionRef = ref(db, 'questions/');
-
 
 window.addEventListener('DOMContentLoaded', () => {
 

@@ -25,6 +25,14 @@ body{
 
 // Utils
 
+.userClue,
+.userCluePassword{
+    color: rgba(222, 51, 51, 0.8);
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+
+
 .btn{
     color: #fff;
 
@@ -106,6 +114,26 @@ body{
     }
     &__username{
         flex: 1 1 auto;
+    }
+
+    &__image{
+        position: relative;
+        width: 200px;
+        height: 200px;
+    }
+
+    &__user-photo{
+        padding-top: 10px;
+        width: 100%;
+        height: 100%;
+        padding: 1px 1px 1px 1px;
+        background-image: url('../img/UserPhoto.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+
+
+        z-index: 10;
     }
 
     &__title{
@@ -229,6 +257,9 @@ body{
                 width: 20px;
                 height: 20px;
             }
+        }
+        &-btn:first-child{
+            margin-bottom: 20px;
         }
     }
     &-timer{
@@ -375,12 +406,32 @@ body{
         flex-direction: column;
         align-items: center;
     }
+    &__input-email{
+        width: 100%;
+        margin-bottom: 50px;
+    }
+    &__input-password{
+        width: 100%;
+        position: relative;
+        margin-bottom: 50px;
+        .password-control {
+            position: absolute;
+            bottom: 15px;
+            right: 3%;
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: url('../img/view.svg') 0 0 no-repeat;
+        }
+        .password-control.view {
+            background: url('../img/no-view.svg') 0 0 no-repeat;
+        }
+    }
     &__input{
         padding-left: 10px;
         width: 100%;
         height: 70px;
         font-size: 30px;
-        margin-bottom: 50px;
         border: 1px solid #9978C5;
         border-radius: 16px;
         background-color: #E6D9F8;
@@ -493,12 +544,23 @@ body{
         }
         &__input{
             width: 100%;
-            height: 60px; 
-            margin-bottom: 40px;  
+            height: 60px;  
         }
         &-btn{
             font-size: 15px;
             padding: 20px 30px 20px 30px;
+        }
+        &__input-password{
+            margin-bottom: 40px;
+            .password-control {
+                bottom: 15px;
+                right: 3%;
+                width: 30px;
+                height: 30px;
+            }
+        }
+        &__input-email{
+            margin-bottom: 40px;
         }
     }
 }
@@ -659,12 +721,23 @@ body{
         &__input{
             width: 100%;
             height: 40px; 
-            margin-bottom: 40px;  
             font-size: 20px;
         }
         &-btn{
             font-size: 15px;
             padding: 10px 20px 10px 20px;
+        }
+        &__input-email{
+            margin-bottom: 40px;
+        }
+        &__input-password{
+            margin-bottom: 40px;
+            .password-control {
+                bottom: 10px;
+                right: 3%;
+                width: 20px;
+                height: 20px;
+            }
         }
     }
     .overdue{
