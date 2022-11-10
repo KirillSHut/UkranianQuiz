@@ -20,7 +20,7 @@ export class User {
                 form.reset();
             })
             .catch((error) => {
-                User.renderError("Виникла помилка, можливо ви ввели не коректні данні")
+                User.renderError("Виникла помилка, можливо ви ввели некоректні дані")
                 form.reset();
             })
     }
@@ -45,7 +45,7 @@ export class User {
                 location.reload();
             })
             .catch((error) => {
-                User.renderError("Виникла помилка, можливо ви ввели не коректні данні")
+                User.renderError("Виникла помилка, можливо ви ввели некоректні дані")
                 form.reset();
             })
     }
